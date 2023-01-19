@@ -3,8 +3,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigsService } from '../configs/configs.service';
-import { OpenaiController } from '../openai/openai.controller';
-import { OpenaiService } from '../openai/openai.service';
+import { OpenAIController } from '../openai/openai.controller';
+import { OpenAIService } from '../openai/openai.service';
 
 @Module({
   imports: [
@@ -12,7 +12,7 @@ import { OpenaiService } from '../openai/openai.service';
       envFilePath: ['.development.env', '.production.env'],
     }),
   ],
-  controllers: [AppController, OpenaiController],
-  providers: [AppService, ConfigsService, OpenaiService],
+  controllers: [AppController, OpenAIController],
+  providers: [AppService, ConfigsService, OpenAIService],
 })
 export class AppModule {}

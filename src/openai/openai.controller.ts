@@ -1,17 +1,17 @@
 import { Controller, Get } from '@nestjs/common';
-import { OpenaiService } from './openai.service';
+import { OpenAIService } from './openai.service';
 
 @Controller('openai')
-export class OpenaiController {
-  constructor(private openaiService: OpenaiService) {}
+export class OpenAIController {
+  constructor(private openAIService: OpenAIService) {}
 
   @Get()
   getOpenAI() {
-    return this.openaiService.getOpenAI;
+    return this.openAIService.getOpenAI;
   }
 
   @Get('create')
   async create() {
-    return this.openaiService.createFineTune();
+    return this.openAIService.createFineTune();
   }
 }

@@ -4,7 +4,7 @@ import { ConfigurationParameters, CreateFineTuneRequest } from 'openai';
 export interface IConfig {
   port: number;
   isDev: boolean;
-  openai: {
+  openAI: {
     configuration: ConfigurationParameters;
     fineTune: CreateFineTuneRequest;
   };
@@ -20,7 +20,7 @@ export class ConfigsService {
     this.devConfig = {
       port: parseInt(process.env.PORT) || 3000,
       isDev: process.env.MODE === 'development',
-      openai: {
+      openAI: {
         configuration: {
           apiKey: process.env.OPENAI_API_KEY,
         },

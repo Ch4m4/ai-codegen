@@ -2,17 +2,17 @@ import { Configuration, OpenAIApi } from 'openai';
 import { ConfigsService } from '../configs/configs.service';
 import { Injectable } from '@nestjs/common';
 
-interface IOpenaiService {
+interface IOpenAIService {
   createFineTune(): void;
 }
 
 @Injectable()
-export class OpenaiService implements IOpenaiService {
+export class OpenAIService implements IOpenAIService {
   private readonly config;
   private readonly openAI: OpenAIApi;
 
   constructor(private configService: ConfigsService) {
-    this.config = configService.devConfig.openai;
+    this.config = configService.devConfig.openAI;
     this.openAI = new OpenAIApi(new Configuration(this.config.configuration));
   }
 
