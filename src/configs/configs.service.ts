@@ -1,33 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigurationParameters, CreateFineTuneRequest } from 'openai';
-
-export interface IConfig {
-  port: number;
-  isDev: boolean;
-  openAI: {
-    configuration: ConfigurationParameters;
-    fineTune: CreateFineTuneRequest;
-  };
-}
-
-export type IDevConfig = IConfig;
+import { IConfig, IConfigsService } from './types/configs.types';
+import { getOpenAIConfig } from './openai/openai.config';
 
 @Injectable()
-export class ConfigsService {
-  readonly devConfig: IDevConfig;
-
-  constructor() {
-    this.devConfig = {
+export class ConfigsService implements IConfigsService {
+  get config() {
+    return {
       port: parseInt(process.env.PORT) || 3000,
       isDev: process.env.MODE === 'development',
-      openAI: {
-        configuration: {
-          apiKey: process.env.OPENAI_API_KEY,
-        },
-        fineTune: {
-          training_file: process.env.OPENAI_TRAINING_FILE,
-        },
-      },
+      openAI: getOpenAIConfig(),
     };
   }
 }
